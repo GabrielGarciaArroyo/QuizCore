@@ -17,7 +17,7 @@ exports.show = function(req, res) {
 };
 
 exports.author = function(req, res) {
-res.render('author', { alumnos: 'Gabriel Garcia Arroyo y Eduardo Sánchez Clemente'} );
+res.render('author', { alumnos: 'Gabriel Garcia Arroyo y Eduardo Sánchez Clemente', errors: [] } );
 
 };
 
