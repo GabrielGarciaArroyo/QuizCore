@@ -16,8 +16,13 @@ exports.show = function(req, res) {
 
 };
 
+exports.edit= function(req, res) {
+var quiz= req.quiz;
+res.render('quizes/edit', {quiz: quiz, errors: []});
+};
+
 exports.author = function(req, res) {
-res.render('author', { alumnos: 'Gabriel Garcia Arroyo y Eduardo Sánchez Clemente'} );
+res.render('author', { alumnos: 'Gabriel Garcia Arroyo y Eduardo Sánchez Clemente', errors: [] } );
 
 };
 
