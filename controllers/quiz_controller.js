@@ -49,8 +49,13 @@ exports.new = function(req, res) {
 };
 
 
-exports.index = function(req, res) {
-models.Quiz.findAll().then(function(quizes) {
+exports.index = function(req, res) {  
+  var options = {};
+  if(req.user){
+    options.where = {UserId: req.user.id}
+  }
+  
+  models.Quiz.findAll(options).then(function(quizes) {
 res.render('quizes/index.ejs', {quizes: quizes, errors: []});
 }).catch(function(error){next(error);})
 };
