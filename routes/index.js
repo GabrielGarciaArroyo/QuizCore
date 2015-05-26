@@ -6,7 +6,7 @@ var commentController = require('../controllers/comment_controller');
 var sessionController = require('../controllers/session_controller');
 var userController = require('../controllers/user_controller');
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', sessionController.timeout, function(req, res) {
   res.render('index', { title: 'Quiz', errors: []});
 });
 
@@ -47,7 +47,8 @@ router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
 router.post('/quizes/:quizId(\\d+)/comments',    commentController.create);
 router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish', 
 	                                    sessionController.loginRequired, commentController.ownershipRequired, commentController.publish);
-router.get('/author', quizController.author );
+router.get('/author', quizController.author,    sessionController.timeout);
+
 module.exports = router;
 
 
