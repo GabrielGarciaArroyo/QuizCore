@@ -77,3 +77,11 @@ exports.publish = function(req, res) {
     .catch(function(error){next(error)});
 
   };
+
+exports.statistics = function(req, res) {
+ models.Comment.findAll().then(
+  function(comment){
+    res.render('quizes/statistics', { comment: comment, errors: []});
+  }
+ ).catch(function(error) { next(error);}) 
+};

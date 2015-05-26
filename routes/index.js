@@ -48,7 +48,7 @@ router.post('/quizes/:quizId(\\d+)/comments',    commentController.create);
 router.get('/quizes/:quizId(\\d+)/comments/:commentId(\\d+)/publish', 
 	                                    sessionController.loginRequired, commentController.ownershipRequired, commentController.publish);
 router.get('/author', quizController.author,    sessionController.timeout);
-
+router.get('/quizes/statistics', quizController.statistics,  commentController.statistics,    sessionController.timeout);
 module.exports = router;
 
 

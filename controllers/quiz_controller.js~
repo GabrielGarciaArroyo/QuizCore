@@ -57,11 +57,11 @@ if (req.user){  // req.user es creado por autoload de usuario
   options.where={ UserId: req.user.id}
 }
 
-var q1=req.query.search||"";
-var q=q1.replace(/\s/g,'%');
-q='%'+q+'%';
+var x=req.query.search||"";
+var y=x.replace(/\s/g,'%');
+y='%'+y+'%';
 
-  models.Quiz.findAll({where: ["pregunta like ?", q], order: [['pregunta','ASC']]}, options).then(
+  models.Quiz.findAll({where: ["pregunta like ?", y], order: [['pregunta','ASC']]}, options).then(
      function(quizes){
        res.render('quizes/index.ejs', { quizes: quizes, 
                                         errors: [],
@@ -139,4 +139,14 @@ exports.destroy = function(req, res) {
   req.quiz.destroy().then( function() {
     res.redirect('/quizes');
   }).catch(function(error){next(error)});
+};
+
+
+// GET /quizes/statistics
+exports.statistics = function(req, res) {
+ models.Quiz.findAll().then(
+  function(quizes){
+    res.render('quizes/statistics', { quizes: quizes, errors: []});
+  }
+ ).catch(function(error) { next(error);}) 
 };

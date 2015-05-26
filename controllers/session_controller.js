@@ -56,7 +56,7 @@ exports.timeout =function(req,res,next){
 		var d = new Date();
 		var n = d.getTime();
 		
-		if((n - req.session.user.time)>3000){
+		if((n - req.session.user.time)>120000){
 			delete req.session.user;  
 		}
 		else{
